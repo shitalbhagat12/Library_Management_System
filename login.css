@@ -1,0 +1,408 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJORPmK_4UGTfnc9rgT7nWTVrlGfR1K4b-EckfOmUN8YsnLTBIEgH_ta8fdtu_b2JgYoU&usqp=CAU');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container {
+    position: relative;
+    width: 90vw;
+    max-width: 900px;
+    height: 80vh;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+}
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(9,9,9,1) 14%, rgb(31, 54, 35) 31%, rgba(31, 54, 35,1) 55%, rgba(19,10,2,1) 78%);
+    z-index: 6;
+    transform: translateX(100%);
+    transition: 1s ease-in-out;
+}
+.signin-signup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 5;
+}
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 10px;
+}
+form.sign-in-form {
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+    transition-delay: 1s;
+}
+form.sign-up-form {
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+    transition-delay: 1s;
+}
+.title {
+    font-size: 3em;
+    text-shadow: 3px 3px 5px hsla(19, 88%, 14%, 0.5);
+    color: hwb(24 0% 90%);
+    margin-bottom: 10px;
+    text-align: center;
+}
+.input-field {
+    width: 100%;
+    height: 50px;
+    background: #f0f0f0;
+    margin: 10px 0;
+    border: 2px solid #240901;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+}
+.input-field:hover {
+    border: 5px solid hsl(14, 91%, 13%);
+}
+.input-field i {
+    flex: 1;
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+}
+.input-field input {
+    flex: 5;
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    color: #444;
+}
+.btn {
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 50px;
+    background: hsl(14, 95%, 7%);
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.btn:hover {
+    background: hwb(13 2% 78%);
+}
+
+.panels-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0 10px;
+    text-align: center;
+    z-index: 6;
+}
+.left-panel {
+    pointer-events: none;
+}
+.content {
+    color: #fff;
+    transition: 1.1s ease-in-out;
+    transition-delay: 0.5s;
+}
+.panel h3 {
+    font-weight: 600;
+}
+.panel p {
+    font-size: 1.2rem;
+   
+}
+.image {
+    width: 70%;
+    transition: 1.1s ease-in-out;
+    transition-delay: 0.4s;
+}
+.left-panel .image,
+.left-panel .content {
+    transform: translateX(-200%);
+}
+.right-panel .image,
+.right-panel .content {
+    transform: translateX(0);
+}
+.account-text {
+    display: none;
+}
+
+/* Animation */
+.container.sign-up-mode::before {
+    transform: translateX(0);
+}
+.container.sign-up-mode .right-panel .image,
+.container.sign-up-mode .right-panel .content {
+    transform: translateX(200%);
+}
+.container.sign-up-mode .left-panel .image,
+.container.sign-up-mode .left-panel .content {
+    transform: translateX(0);
+}
+.container.sign-up-mode form.sign-in-form {
+    opacity: 0;
+}
+.container.sign-up-mode form.sign-up-form {
+    opacity: 1;
+}
+.container.sign-up-mode .right-panel {
+    pointer-events: none;
+}
+.container.sign-up-mode .left-panel {
+    pointer-events: all;
+}
+
+/* Responsive Design */
+
+/* Screen width 1024px and below */
+@media (max-width: 1024px) {
+    .container {
+        width: 90vw;
+        height: 70vh;
+    }
+    .form {
+        width: 100%;
+    }
+    .title {
+        font-size: 2.5em;
+    }
+    .input-field {
+        height: 45px;
+    }
+    .btn {
+        width: 130px;
+        height: 45px;
+    }
+    .social-text {
+        font-size: 20px;
+    }
+    .social-icon {
+        height: 40px;
+        width: 40px;
+    }
+    .panel h3 {
+        margin-top: 2rem;
+        font-size: 1.5em;
+    }
+    .panel p {
+        font-size: 1.2em;
+    }
+    .image {
+        width: 50%;
+    }
+}
+
+/* Screen width 850px and below */
+@media (max-width: 850px) {
+    .container {
+        width: 90vw;
+        height: 60vh;
+    }
+    .form {
+        width: 100%;
+    }
+    .title {
+        font-size: 2em;
+    }
+    .input-field {
+        height: 40px;
+    }
+    .btn {
+        width: 120px;
+        height: 40px;
+    }
+    .social-text {
+        font-size: 18px;
+    }
+    .social-icon {
+        height: 35px;
+        width: 35px;
+    }
+    .panel h3 {
+        font-size: 1.2em;
+    }
+    .panel p {
+        font-size: 1em;
+    }
+}
+
+/* Screen width 750px and below */
+@media (max-width: 750px) {
+    .container {
+        width: 95vw;
+        height: 50vh;
+    }
+    .form {
+        width: 100%;
+    }
+    .title {
+        font-size: 1.8em;
+    }
+    .input-field {
+        height: 35px;
+    }
+    .btn {
+        width: 110px;
+        height: 35px;
+    }
+    .social-text {
+        font-size: 16px;
+    }
+    .social-icon {
+        height: 30px;
+        width: 30px;
+    }
+    .panel h3 {
+        font-size: 1em;
+    }
+    .panel p {
+        font-size: 0.9em;
+    }
+}
+
+/* Screen width 650px and below */
+@media (max-width: 650px) {
+    .container {
+        width: 100vw;
+        height: 40vh;
+        border-radius: 0;
+    }
+    .form {
+        width: 100%;
+    }
+    .title {
+        font-size: 1.6em;
+    }
+    .input-field {
+        height: 30px;
+    }
+    .btn {
+        width: 100px;
+        height: 30px;
+    }
+    .social-text {
+        font-size: 14px;
+    }
+    .social-icon {
+        height: 25px;
+        width: 25px;
+    }
+    .panel h3 {
+        font-size: 0.9em;
+    }
+    .panel p {
+        font-size: 0.8em;
+    }
+}
+
+/* Screen width 550px and below */
+@media (max-width: 550px) {
+    .container {
+        width: 100vw;
+        height: 40vh;
+    }
+    .form {
+        width: 100%;
+    }
+    .title {
+        font-size: 1.4em;
+    }
+    .input-field {
+        height: 25px;
+    }
+    .btn {
+        width: 75px;
+    height: 30px;
+    font-size: 11px;
+    }
+    .social-text {
+        font-size: 12px;
+    }
+    .social-icon {
+        height: 20px;
+        width: 20px;
+    }
+    .panel h3 {
+        font-size: 0.8em;
+    }
+    .panel p {
+        font-size: 0.7em;
+    }
+}
+
+/* Screen width 350px and below */
+@media (max-width: 350px) {
+    .container {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+    .form {
+        width: 100%;
+    }
+    .title {
+        font-size: 1.2em;
+    }
+    .input-field {
+        height: 20px;
+    }
+    .btn {
+        width: 80px;
+        height: 20px;
+    }
+    .social-text {
+        font-size: 10px;
+    }
+    .social-icon {
+        height: 15px;
+        width: 15px;
+    }
+    .panel h3 {
+        font-size: 0.7em;
+    }
+    .panel p {
+        font-size: 0.6em;
+    }
+}

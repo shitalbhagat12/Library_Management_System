@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="library.css">
+</head>
+
+<body id="body">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="logo.jpeg" alt="Logo" class="navbar-logo">
+            <span class="navbar-text">Library Management</span>
+        </div>
+        <div class="navbar-search">
+            <!-- Added 'Genres' tab -->
+            <div class="navbar-genres">
+                <button class="navbar-genres-button" onclick="toggleGenresDropdown()">Genres</button>
+                <div id="genresDropdown" class="navbar-genres-dropdown" style="display: none;">
+                    <ul>
+                        <!-- Fiction Subgenres -->
+                        <li onclick="toggleDropdown('fiction')">Fiction</li>
+                        <ul id="fiction" style="display: none; padding-left: 20px;">
+                            <li onclick="fetchBooks('Literary Fiction', 'Literary Fiction')">Literary Fiction</li>
+                            <li onclick="fetchBooks('Mystery', 'Mystery')">Mystery</li>
+                            <li onclick="fetchBooks('Thriller', 'Thriller')">Thriller</li>
+                            <li onclick="fetchBooks('Horror', 'Horror')">Horror</li>
+                            <li onclick="fetchBooks('Historical Fiction', 'Historical Fiction')">Historical Fiction</li>
+                            <li onclick="fetchBooks('Romance', 'Romance')">Romance</li>
+                            <li onclick="fetchBooks('Science Fiction', 'Science Fiction')">Science Fiction</li>
+                            <li onclick="fetchBooks('Fantasy', 'Fantasy')">Fantasy</li>
+                            <li onclick="fetchBooks('Dystopian', 'Dystopian')">Dystopian</li>
+                            <li onclick="fetchBooks('Adventure', 'Adventure')">Adventure</li>
+                        </ul>
+                        <!-- Non-Fiction Subgenres -->
+                        <li onclick="toggleDropdown('non-fiction')">Non-Fiction</li>
+                        <ul id="non-fiction" style="display: none; padding-left: 20px;">
+                            <li onclick="fetchBooks('Biography', 'Biography')">Biography</li>
+                            <li onclick="fetchBooks('Autobiography', 'Autobiography')">Autobiography</li>
+                            <li onclick="fetchBooks('Memoir', 'Memoir')">Memoir</li>
+                            <li onclick="fetchBooks('Self-Help', 'Self-Help')">Self-Help</li>
+                            <li onclick="fetchBooks('True Crime', 'True Crime')">True Crime</li>
+                            <li onclick="fetchBooks('History', 'History')">History</li>
+                            <li onclick="fetchBooks('Philosophy', 'Philosophy')">Philosophy</li>
+                            <li onclick="fetchBooks('Science', 'Science')">Science</li>
+                            <li onclick="fetchBooks('Business & Economics', 'Business & Economics')">Business &
+                                Economics</li>
+                            <li onclick="fetchBooks('Travel', 'Travel')">Travel</li>
+                        </ul>
+                        <!-- Children's Books Subgenres -->
+                        <li onclick="toggleDropdown('childrens-books')">Children's Books</li>
+                        <ul id="childrens-books" style="display: none; padding-left: 20px;">
+                            <li onclick="fetchBooks('Picture Books', 'Picture Books')">Picture Books</li>
+                            <li onclick="fetchBooks('Early Readers', 'Early Readers')">Early Readers</li>
+                            <li onclick="fetchBooks('Middle Grade', 'Middle Grade')">Middle Grade</li>
+                            <li onclick="fetchBooks('Young Adult', 'Young Adult (YA)')">Young Adult (YA)</li>
+                        </ul>
+                        <!-- Other Genres Subgenres -->
+                        <li onclick="toggleDropdown('other-genres')">Other Genres</li>
+                        <ul id="other-genres" style="display: none; padding-left: 20px;">
+                            <li onclick="fetchBooks('Poetry', 'Poetry')">Poetry</li>
+                            <li onclick="fetchBooks('Graphic Novels & Comics', 'Graphic Novels & Comics')">Graphic
+                                Novels &
+                                Comics</li>
+                            <li onclick="fetchBooks('Short Stories', 'Short Stories')">Short Stories</li>
+                            <li onclick="fetchBooks('Anthology', 'Anthology')">Anthology</li>
+                            <li onclick="fetchBooks('Classics', 'Classics')">Classics</li>
+                            <li onclick="fetchBooks('Spirituality & Religion', 'Spirituality & Religion')">Spirituality
+                                &
+                                Religion</li>
+                            <li onclick="fetchBooks('Cookbooks', 'Cookbooks')">Cookbooks</li>
+                            <li onclick="fetchBooks('Art & Photography', 'Art & Photography')">Art & Photography</li>
+                            <li onclick="fetchBooks('Health & Fitness', 'Health & Fitness')">Health & Fitness</li>
+                            <li onclick="fetchBooks('Home & Garden', 'Home & Garden')">Home & Garden</li>
+                            <li onclick="fetchBooks('Humor', 'Humor')">Humor</li>
+                            <li onclick="fetchBooks('Politics & Social Sciences', 'Politics & Social Sciences')">
+                                Politics &
+                                Social Sciences</li>
+                            <li onclick="fetchBooks('Education & Reference', 'Education & Reference')">Education &
+                                Reference
+                            </li>
+                            <li onclick="fetchBooks('Sports & Outdoors', 'Sports & Outdoors')">Sports & Outdoors</li>
+                            <li onclick="fetchBooks('Technology & Computers', 'Technology & Computers')">Technology &
+                                Computers
+                            </li>>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+            <input type="text" placeholder="Search books..." id="searchInput" class="navbar-search-input">
+            <button onclick="searchBooks()" class="navbar-search-button"> <i class="fas fa-search"></i></button>
+        </div>
+
+    </nav>
+
+    <div class="custom-container">
+        <div class="custom-left-div">
+            <!-- User Profile Section -->
+            <div class="user-profile">
+                <div class="user-profile-icon">
+                    <!-- You can use an icon library or replace with an appropriate user icon -->
+                    <span>👤</span>
+                </div>
+                <div id="username" class="user-profile-name">John Doe</div>
+            </div>
+            <h1>Our Books</h1>
+            <ul>
+                <!-- Fiction Dropdown -->
+                <li id="fiction" onclick="toggleDropdown('fictionGenres')">Fiction Books</li>
+                <ul id="fictionGenres" style="display: none; padding-left: 20px;">
+                    <li onclick="fetchBooks('Literary Fiction', 'Literary Fiction')">Literary Fiction</li>
+                    <li onclick="fetchBooks('Mystery', 'Mystery')">Mystery</li>
+                    <li onclick="fetchBooks('Thriller', 'Thriller')">Thriller</li>
+                    <li onclick="fetchBooks('Horror', 'Horror')">Horror</li>
+                    <li onclick="fetchBooks('Historical Fiction', 'Historical Fiction')">Historical Fiction</li>
+                    <li onclick="fetchBooks('Romance', 'Romance')">Romance</li>
+                    <li onclick="fetchBooks('Science Fiction', 'Science Fiction')">Science Fiction</li>
+                    <li onclick="fetchBooks('Fantasy', 'Fantasy')">Fantasy</li>
+                    <li onclick="fetchBooks('Dystopian', 'Dystopian')">Dystopian</li>
+                    <li onclick="fetchBooks('Adventure', 'Adventure')">Adventure</li>
+                </ul>
+
+                <!-- Non-Fiction Dropdown -->
+                <li id="nonfiction" onclick="toggleDropdown('nonFictionGenres')">Non-Fiction Books</li>
+                <ul id="nonFictionGenres" style="display: none; padding-left: 20px;">
+                    <li onclick="fetchBooks('Biography', 'Biography')">Biography</li>
+                    <li onclick="fetchBooks('Autobiography', 'Autobiography')">Autobiography</li>
+                    <li onclick="fetchBooks('Memoir', 'Memoir')">Memoir</li>
+                    <li onclick="fetchBooks('Self-Help', 'Self-Help')">Self-Help</li>
+                    <li onclick="fetchBooks('True Crime', 'True Crime')">True Crime</li>
+                    <li onclick="fetchBooks('History', 'History')">History</li>
+                    <li onclick="fetchBooks('Philosophy', 'Philosophy')">Philosophy</li>
+                    <li onclick="fetchBooks('Science', 'Science')">Science</li>
+                    <li onclick="fetchBooks('Business & Economics', 'Business & Economics')">Business & Economics</li>
+                    <li onclick="fetchBooks('Travel', 'Travel')">Travel</li>
+                </ul>
+
+                <!-- Children's Books Dropdown -->
+                <li id="children" onclick="toggleDropdown('childrenGenres')">Children's Books</li>
+                <ul id="childrenGenres" style="display: none; padding-left: 20px;">
+                    <li onclick="fetchBooks('Picture Books', 'Picture Books')">Picture Books</li>
+                    <li onclick="fetchBooks('Early Readers', 'Early Readers')">Early Readers</li>
+                    <li onclick="fetchBooks('Middle Grade', 'Middle Grade')">Middle Grade</li>
+                    <li onclick="fetchBooks('Young Adult', 'Young Adult (YA)')">Young Adult (YA)</li>
+                </ul>
+
+                <!-- Other Genres Dropdown -->
+                <li id="other" onclick="toggleDropdown('otherGenres')">Other Genres</li>
+                <ul id="otherGenres" style="display: none; padding-left: 20px;">
+                    <li onclick="fetchBooks('Poetry', 'Poetry')">Poetry</li>
+                    <li onclick="fetchBooks('Graphic Novels & Comics', 'Graphic Novels & Comics')">Graphic Novels &
+                        Comics</li>
+                    <li onclick="fetchBooks('Short Stories', 'Short Stories')">Short Stories</li>
+                    <li onclick="fetchBooks('Anthology', 'Anthology')">Anthology</li>
+                    <li onclick="fetchBooks('Classics', 'Classics')">Classics</li>
+                    <li onclick="fetchBooks('Spirituality & Religion', 'Spirituality & Religion')">Spirituality &
+                        Religion</li>
+                    <li onclick="fetchBooks('Cookbooks', 'Cookbooks')">Cookbooks</li>
+                    <li onclick="fetchBooks('Art & Photography', 'Art & Photography')">Art & Photography</li>
+                    <li onclick="fetchBooks('Health & Fitness', 'Health & Fitness')">Health & Fitness</li>
+                    <li onclick="fetchBooks('Home & Garden', 'Home & Garden')">Home & Garden</li>
+                    <li onclick="fetchBooks('Humor', 'Humor')">Humor</li>
+                    <li onclick="fetchBooks('Politics & Social Sciences', 'Politics & Social Sciences')">Politics &
+                        Social Sciences</li>
+                    <li onclick="fetchBooks('Education & Reference', 'Education & Reference')">Education & Reference
+                    </li>
+                    <li onclick="fetchBooks('Sports & Outdoors', 'Sports & Outdoors')">Sports & Outdoors</li>
+                    <li onclick="fetchBooks('Technology & Computers', 'Technology & Computers')">Technology & Computers
+                    </li>
+
+                </ul>
+            </ul>
+
+        </div>
+        <div class="custom-right-div" id="welcome-section">
+            <h2 id="custom-right-heading">A room without books is like a body without a soul</h2>
+            <div id="custom-card-grid" class="custom-card-grid">
+                <!-- Book cards will be dynamically added here -->
+            </div>
+            <button id="viewMoreButton" class="view-more-button" onclick="viewMoreBooks()" style="display: none;">View
+                More</button>
+        </div>
+
+    </div>
+   <script src="library.js"></script>
+</body>
+
+</html>
